@@ -29,7 +29,7 @@
 
 function filterList(data){
   list = urlParams.list?urlParams.list:localStorage.getItem("crypto_list")
-  if(list && Array.isArray(JSON.parse(list))){
+  if(list && Array.isArray(JSON.parse(list)) && JSON.parse(list).length>0){
      localStorage.setItem("crypto_list", list);
      app.list=list
      return   data.filter(d => JSON.parse(list).includes(d.slug))
