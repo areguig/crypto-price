@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
+    <title>Crypto Market</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,27 +12,20 @@
     <link rel="stylesheet" href="css/auto-complete.css">
   </head>
   <body>
+      <script src="https://unpkg.com/vue"></script>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">Crypto price</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
             <form class="form-inline my-2 my-lg-0">
               <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             </form>
           </div>
         </nav>
     <div class="container">
-
       <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
-      <div class="row">
-        <div class="coinmarketcap-currency-widget col-sm"  
+      <div id="app" class="row">
+          <div v-for="item in items" class="coinmarketcap-currency-widget col-sm-3"  
         data-rank="false" data-marketcap="false" data-volume="false" 
-        data-currency="bitcoin" data-base="EUR" ></div>
-        <div class="coinmarketcap-currency-widget col-sm"  
-        data-rank="false" data-marketcap="false" data-volume="false" 
-        data-currency="ethereum" data-base="EUR" ></div>
+        :data-currency="item.slug" data-base="EUR" ></div>
       </div>
     </div>
     <!-- JavaScript -->
