@@ -10,7 +10,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/auto-complete.css">
-    <script src="https://unpkg.com/vue"></script>
   </head>
   <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,16 +24,16 @@
           </div>
         </nav>
     <div class="container">
+
       <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
-      <div id="app">
-          {{ message }}
-        </div>
-      <div class="coinmarketcap-currency-widget"  
-      data-rank="false" data-marketcap="false" data-volume="false" 
-      data-currency="bitcoin" data-base="EUR" ></div>
-      <div class="coinmarketcap-currency-widget"  
-      data-rank="false" data-marketcap="false" data-volume="false" 
-      data-currency="bitcoin-cash" data-base="EUR" ></div>
+      <div class="row">
+        <div class="coinmarketcap-currency-widget col-sm"  
+        data-rank="false" data-marketcap="false" data-volume="false" 
+        data-currency="bitcoin" data-base="EUR" ></div>
+        <div class="coinmarketcap-currency-widget col-sm"  
+        data-rank="false" data-marketcap="false" data-volume="false" 
+        data-currency="ethereum" data-base="EUR" ></div>
+      </div>
     </div>
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
