@@ -21,7 +21,7 @@
       while (match = search.exec(query))
          urlParams[decode(match[1])] = decode(match[2]);
   })();
-alert(urlParams)
+  
   $.getJSON('https://areguig.github.io/crypto-price/currencies.json', function(data){
     if(urlParams.list && Array.isArray(JSON.parse(urlParams.list))){
       app.items = data.filter( d => JSON.parse(urlParams.list).includes(d.slug))
