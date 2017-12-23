@@ -9,7 +9,7 @@
   })
 
   $.getJSON('https://areguig.github.io/crypto-price/currencies.json', function(data){ 
-    app.items=data;
+    app.items=data.slice(0,100);;
   })
 
   new autoComplete({
