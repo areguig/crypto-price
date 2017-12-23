@@ -1,13 +1,13 @@
   var app = new Vue({
     el: '#app',
     data: {
+      list: [],
       items: [{
         "name": "Bitcoin",
         "slug": "bitcoin"
       }]
     }
   })
-
 
   var urlParams;
   (window.onpopstate = function () {
@@ -21,18 +21,19 @@
       while (match = search.exec(query))
          urlParams[decode(match[1])] = decode(match[2]);
   })();
-  
+
   $.getJSON('https://areguig.github.io/crypto-price/currencies.json', function(data){
-    if(urlParams.list && Array.isArray(JSON.parse(urlParams.list))){
-      app.items = data.filter( d => JSON.parse(urlParams.list).includes(d.slug))
-    } else {
-      app.items=data.slice(0,100);
-    }
+    app.items=filterList(data);
   })
 
-  new autoComplete({
-    selector: 'input[id="search"]',
-    source: function(term, response){
-       response(currencies);
-    }
-})
+
+function filterList(data){
+  list = urlParams.list?urlParams.list:localStorage.getItem("crypto_list")
+  if(list && Array.isArray(JSON.parse(list))){
+     localStorage.setItem("crypto_list", list);
+     app.list=list
+     return   data.filter(d => JSON.parse(list).includes(d.slug))
+  } else {
+    return data.slice(0,100);
+  }
+}
