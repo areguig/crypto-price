@@ -19,18 +19,20 @@
   var app = new Vue({
     el: '#app',
     data: {
+      currency: "EUR",
       list: urlParams.list?urlParams.list:localStorage.getItem(FILTER),
-      items: [{
-        "name": "Bitcoin",
-        "slug": "bitcoin"
-      }]
+      items: []
+    },
+    computed: {
+      orderedItems: function () {
+        return this.items.sort((a, b) => a.ticker.rank - b.ticker.rank);
+      }
     },
     methods: {
       clearFilter: function (event) {
         this.items = currencies.slice(0,100)
         this.list = []
         localStorage.removeItem(FILTER)
-        reloadScript()
         window.location.href=window.location.href.split(/[?#]/)[0];
       }
     }
@@ -38,7 +40,12 @@
 
   
   $.getJSON('https://areguig.github.io/crypto-price/currencies.json', function(data){
-    app.items=filterList(data);
+    filterList(data).forEach(element => {
+      $.getJSON('https://widgets.coinmarketcap.com/v1/ticker/'+element.slug+'/?convert=EUR', function(data){
+        element.ticker = data[0];
+        app.items.push(element)
+      });
+    });
   })
 
 
@@ -50,13 +57,4 @@ function filterList(data){
   } else {
     return data.slice(0,100);
   }
-}
-
-function reloadScript(){
-  var body= document.getElementsByTagName('body')[0];
-  document.getElementById("currency-js").remove();
-   var script= document.createElement('script');
-   script.type= 'text/javascript';
-   script.src= 'https://files.coinmarketcap.com/static/widget/currency.js';
-   body.appendChild(script);
 }

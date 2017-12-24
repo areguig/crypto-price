@@ -6,34 +6,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" href="https://files.coinmarketcap.com/static/img/coins/64x64/bitcoin.png">
+    <link rel="icon" href="https://avatars1.githubusercontent.com/u/10230307?s=460&v=4">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/auto-complete.css">
     <link rel="stylesheet" href="css/crypto-market.css">
-    <script src="https://unpkg.com/vue"></script>
   </head>
   <body>
     <div id="app" >
       <div class="container fill">
-        <nav class=" navbar navbar-default navbar-light bg-light">
-            <a class="navbar-brand" href="#">Crypto market</a>
-            filter = {{list}}
+        <nav class=" navbar navbar-default navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="#">Crypto market </a>
+            {{(list && list.length>0)? 'filter ='+list: '#noFilter'}}
             <button v-on:click="clearFilter" type="button" class="navbar-right btn btn-success">Clear filter</button>
         </nav>
+        <br/>
         <div class="row">
-          <div v-for="item in items" class="coinmarketcap-currency-widget col-sm"  
-            data-rank="false" data-marketcap="false" data-volume="false" 
-            :data-currency="item.slug" data-base="EUR" ></div>
+          <div class="col-sm" v-for="item in orderedItems" style="border:2px solid #E4E6EB;border-radius: 10px;font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;min-width:260px;">
+            <div>
+               <div style="float:right;width:80%;border: 0px solid #000;text-align:left;padding:5px 0px;line-height:30px;">            
+                  <span style="font-size: 16px;">
+                    <a :href="'http://coinmarketcap.com/currencies/'+item.slug+'/'" target="_blank" style="text-decoration: none; color: rgb(66, 139, 202);">
+                      {{item.name}} ({{item.ticker.symbol}})
+                    </a>
+                  </span> 
+                  <br>            
+                  <span style="font-size: 15px;">{{parseFloat(item.ticker.price_eur).toFixed(2)}}&euro; <span :class="item.ticker.percent_change_24h.startsWith('-')?'red':'green'">({{item.ticker.percent_change_24h}}%)</span></span>                    
+                </div>
+               <div style="text-align:center;padding:5px 0px;width:20%;">
+                 <img :src="'https://files.coinmarketcap.com/static/img/coins/32x32/'+item.slug+'.png'">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-  </div>
+    </div>
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script id='currency-js' type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
-    <script src="js/auto-complete.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="js/crypto-market.js"></script>
   </body>
 </html>
