@@ -31,6 +31,7 @@
         this.list = []
         localStorage.removeItem(FILTER)
         reloadScript()
+        window.location.href=window.location.href.split(/[?#]/)[0];
       }
     }
   })
