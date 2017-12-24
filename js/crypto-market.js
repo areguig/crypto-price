@@ -53,10 +53,10 @@ function filterList(data){
 }
 
 function reloadScript(){
-  var head= document.getElementsByTagName('head')[0];
+  var body= document.getElementsByTagName('body')[0];
   document.getElementById("currency-js").remove();
    var script= document.createElement('script');
    script.type= 'text/javascript';
    script.src= 'https://files.coinmarketcap.com/static/widget/currency.js';
-   head.appendChild(script);
+   body.appendChild(script);
 }
