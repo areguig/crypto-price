@@ -1,0 +1,10 @@
+{
+    "name": "Crypto market price",
+    "short_name": "crypto-market",
+    "display": "minimal-ui",
+    "start_url": "/",
+    "theme_color": "#673ab6",
+    "background_color": "#111111",
+    "icons": [
+    ]
+  }

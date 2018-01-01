@@ -20,6 +20,7 @@
     el: '#app',
     data: {
       currency: "EUR",
+      selection: "fav",
       list: urlParams.list?urlParams.list:localStorage.getItem(FILTER),
       items: []
     },
@@ -58,3 +59,7 @@ function filterList(data){
     return data.slice(0,100);
   }
 }
+
+navigator.serviceWorker && navigator.serviceWorker.register('/js/sw.js').then(function(registration) {
+  console.log('Excellent, registered with scope: ', registration.scope);
+});
