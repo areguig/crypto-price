@@ -53,8 +53,8 @@
 function filterList(data){
   if(app.list && Array.isArray(JSON.parse(app.list)) && JSON.parse(app.list).length>0){
     currencies = data
-     localStorage.setItem(FILTER, app.list);
-     return   data.filter(d => JSON.parse(app.list).includes(d.slug))
+    localStorage.setItem(FILTER, app.list);
+    return data.filter(d => JSON.parse(app.list).includes(d.slug))
   } else {
     return data.slice(0,100);
   }

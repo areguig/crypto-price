@@ -48,18 +48,18 @@
             </div>
         <br/>
         <div class="row">
-          <div class="col-sm" v-for="item in orderedItems" style="border:2px solid #E4E6EB;border-radius: 10px;font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;min-width:260px;">
+          <div class="col-sm" v-for="item in orderedItems" style="border:1px solid #E4E6EB;border-radius:20px;min-width:24%;margin-top: 3px; margin-right:2px;background-color: rgb(253, 255, 255);">
             <div>
-               <div style="float:right;width:80%;border: 0px solid #000;text-align:left;padding:5px 0px;line-height:30px;">            
+               <div style="float:right;width:80%;border: 0px solid #000;text-align:left;padding:5px 0px;text-overflow: ellipsis;white-space: nowrap; overflow:hidden;">            
                   <span style="font-size: 16px;">
-                    <a :href="'http://coinmarketcap.com/currencies/'+item.slug+'/'" target="_blank" style="text-decoration: none; color: rgb(66, 139, 202);">
+                    <a :href="'http://coinmarketcap.com/currencies/'+item.slug+'/'" target="_blank" style="color: rgb(66, 139, 202);">
                       {{item.name}} ({{item.ticker.symbol}})
                     </a>
                   </span> 
-                  <br>            
+                  <br/>
                   <span style="font-size: 15px;">{{parseFloat(item.ticker.price_eur).toFixed(2)}}&euro; <span :class="item.ticker.percent_change_24h.startsWith('-')?'red':'green'">({{item.ticker.percent_change_24h}}%)</span></span>                    
                 </div>
-               <div style="text-align:center;padding:5px 0px;width:20%;">
+               <div style="padding:5px 0px;">
                  <img :src="'https://files.coinmarketcap.com/static/img/coins/32x32/'+item.slug+'.png'">
               </div>
             </div>
