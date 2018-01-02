@@ -40,7 +40,7 @@
   })
 
   
-  $.getJSON('https://areguig.github.io/crypto-price/currencies.json', function(data){
+  $.getJSON('./currencies.json', function(data){
     filterList(data).forEach(element => {
       $.getJSON('https://widgets.coinmarketcap.com/v1/ticker/'+element.slug+'/?convert=EUR', function(data){
         element.ticker = data[0];
